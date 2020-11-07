@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.mapper.CommentDAO"> 
+    <select id="getCommentById"  resultType="Comment">
+        select
+        * from Comment where `id`=#{id}
+    </select>
+    <delete id="delete">
+		delete from Comment where id=#{id}
+	</delete>
+    <select id="getCommentCount" resultType="int">
+        select count(id) from Comment
+    </select>
+    <select id="getAllComment" resultType="Comment">
+        select * from Comment
+    </select>
+    <insert id="insert" parameterType="Comment">
+        insert into
+        Comment(uid,mid,content,type,created,updated,status,subject,pid) 
+        values(#{uid},#{mid},#{content},#{type},#{created},#{updated},#{status},#{subject},#{pid});
+    </insert>
+        
+    <update id="update" parameterType="Comment">
+		update Comment set uid=#{uid},mid=#{mid},content=#{content},type=#{type},created=#{created},updated=#{updated},status=#{status},subject=#{subject},pid=#{pid} where id=#{id}
+	</update>
+        </mapper>

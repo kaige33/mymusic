@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.mapper.ArticleDAO"> 
+    <select id="getArticleById"  resultType="Article">
+        select
+        * from Article where `id`=#{id}
+    </select>
+    <delete id="delete">
+		delete from Article where id=#{id}
+	</delete>
+    <select id="getArticleCount" resultType="int">
+        select count(id) from Article
+    </select>
+    <select id="getAllArticle" resultType="Article">
+        select * from Article
+    </select>
+    <select id="getRandom" resultType="Article">
+        select * from Article where 1=1 order by RAND() 
+    </select>
+    <insert id="insert" parameterType="Article">
+        insert into
+        Article(uid,title,thumb,description,bodytext,created,click,support,tags,filepath) 
+        values(#{uid},#{title},#{thumb},#{description},#{bodytext},#{created},#{click},#{support},#{tags},#{filepath});
+    </insert>
+        
+    <update id="update" parameterType="Article">
+		update Article set uid=#{uid},title=#{title},thumb=#{thumb},description=#{description},bodytext=#{bodytext},created=#{created},click=#{click},support=#{support},tags=#{tags},filepath=#{filepath} where id=#{id}
+	</update>
+        </mapper>
